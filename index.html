@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Web Development 101 PROJECT: Rock Paper Scissors</title>
+</head>
+<body>
+  <script>
+    let playerScore = 0;
+    let computerScore = 0;
+    function capitalizeFirstLetter(str) {
+      let lowercaseChar = str.toLowerCase();
+      let firstLetter = str.charAt(0);
+      let capitalizeFirst = firstLetter.toUpperCase();
+      let lowercaseBody = lowercaseChar.substring(1);
+      return capitalizeFirst + lowercaseBody;
+    }
+    function computerPlay() { 
+      let compChoice = ["Rock","Paper","Scissors"];
+      let randomChoice = compChoice[Math.floor(Math.random()*compChoice.length)];
+      return randomChoice;
+    }
+    function userPlay() {
+      let input = prompt("Lets Play Rock, Paper, Scissors! What is your choice?");
+      return capitalizeFirstLetter(input);
+    }
+    function playRound(x, y, player, computer) {
+      if (x==y) { 
+        alert ("It's a Tie!") 
+        alert ("The Score Is " + playerScore + " - " + computerScore);
+      }
+      else if (x == "Rock" && y == "Scissors" || x == "Paper" && y == "Rock" || x == "Scissors" && y == "Paper")  {
+        playerScore = ++playerScore;
+        alert ("Opponent picked " + y + ", You Win! " + x + " Beats " + y);
+        alert ("The Score Is " + playerScore + " - " + computerScore);
+      }
+      else if (x == "Rock" && y ==  "Paper" || x == "Paper" && y ==  "Scissors" || x == "Scissors" && y ==  "Rock") {
+        computerScore = ++computerScore;
+        alert ("Opponent picked " + y + ", You Lose! " + y + " Beats " + x);
+        alert ("The Score Is " + playerScore + " - " + computerScore);
+      }
+      else {
+        alert ("Error, Final Score Invalid, Please Restart Game"); 
+        alert ("The Score Is " + playerScore + " - " + computerScore);
+      }
+    }
+    function gameOfFive() { 
+      for (i = 0; i < 5; i++) { 
+        playRound(userPlay(), computerPlay()); }
+      alert ("The Final Score Is " + playerScore + " - " + computerScore);
+      if (playerScore > computerScore) { alert ("You Win!"); }
+        else if (playerScore == computerScore) { alert ("Tie Game!"); }
+        else { alert ("You Lose!"); }
+    }
+    console.log(gameOfFive());
+  </script>
+</body>
+</html>
